@@ -1,0 +1,28 @@
+Installation
+Write The OS Image / Запись образа ОС 
+https://github.com/ccrisan/motioneyeos/releases все ОС
+1.download the latest stable release called motioneyeos-[board]-yyyymmdd.img.gz, where [board] is the name of your board / Загрузить стабильную версию 
+2.extract the image file from the archive / Извлечь файл образа из архива
+3.write the image file to your SD card / Записать файл на SD карту
+4.If you use Windows, just follow these instructions / Если используете Windows инструкция > http://www.raspberrypi.org/documentation/installation/installing-images/windows.md
+If you use Linux or OSX, there's a writeimage.sh script that will do everything for you, including the optional setup of a wireless network connection and setting a static IP address. Just run the script as follows (replacing the arguments with appropriate values) / Если вы используете Linux или OSX, вам поможет сценарий writeimage.sh, который сделает все для вас, включая дополнительную настройку беспроводного сетевого подключения и установку статического IP-адреса. Просто запустите скрипт следующим образом (заменив аргументы соответствующими значениями)
+ ./writeimage.sh -d /dev/mmcblk0 -i "/path/to/motioneyeos.img" note: specify the device path to the disk and not to some partition (e.g. /dev/mmcblk0 instead of /dev/mmcblk0p1) / Указать путь устройства к диску не к разделу 
+ You can preconfigure a wireless network connection / Предварительная настройка беспроводного сетевого соеденения
+ ./writeimage.sh -d /dev/mmcblk0 -i "/path/to/motioneyeos.img" -n 'yournet:yourkey'
+ If you prefer a static IP instead of DHCP, just run the following command / Если вы предпочитаете статический IP вместо DHCP, просто выполните следующую команду ./writeimage.sh -d /dev/mmcblk0 -i "/path/to/motioneyeos.img" -s "192.168.1.101/24:192.168.1.1:8.8.8.8" Any other image writing method should work, including using the Unix dd command / Любой другой способ записи изображений должен работать, включая использование команды und dd. 
+  For W / Win и R на клавиатуре запустить утилиту «Выполнить» и вбить в нее задачу cmd.exe. Так или иначе, после входа в «Командную строку» останется лишь прописать в ней значение ipconfig /all, подтвердить ввод нажатием Enter и проверить настройки подключения, в том числе и параметры работы DHCP.
+  If you are having problems using writeimage.sh try using https://etcher.io/ as mentioned in Issue #857 Любой другой способ записи изображений должен работать, включая использование команды und dd.
+  First Boot / Первый запуск
+  When booting a fresh image installation, a few initialization steps will take place and therefore the system won't be ready for about 1-2 minutes. Please do not disconnect or reboot your board during these first two minutes!. These steps are / При загрузке образа произойдет несколько шагов инициализации, и поэтому система не будет готова в течение примерно 1-2 минут. Не отключайте и не перезагружайте плату в течение этих первых двух минут !
+•	preparing the data partition on the SD card / Подготовка разделов карты SD
+•	configuring SSH remote access / Настройка удалённого доступа SHH
+•	auto-configuring any detected camera devices / Автонастройка любой камеры
+ Of course your motionEyeOS needs an IP address before you can communicate with it so you'll have to use the ethernet connection with DHCP enabled, unless you have preconfigured a static IP address.
+As soon as your motionEyeOS is ready it will listen on port 80 and present you a web user interface. To access it, enter the IP address of your board in the address bar of your browser. To find the address, connect to your router (most routers can display the addresses of all connected devices) and look for a device name beginning with "meye-". Alternatively, you can use a network scanner such as the free mobile app Fing.
+Click on the user icon on the upper-left side of the page to switch user to administrator. Use admin with no password when asked for credentials. Feel free to explore all the available configuration options / 
+Вашей EyeOS нужен IP-адрес, прежде чем вы сможете общаться с ним, поэтому вам нужно будет использовать соединение ethernet с включенным DHCP, если вы не настроили статический IP-адрес.
+Как только ваше motionEyeOS будет готово, порт 80 и веб-интерфейс пользователя. Чтобы получить доступ к нему, введите IP-адрес своей платы в адресной строке вашего браузера. Чтобы найти адрес, подключитесь к маршрутизатору (большинство маршрутизаторов могут отображать адреса всех подключенных устройств) и найдите имя устройства, начинающееся с «meye-».
+Кроме того, вы можете использовать сетевой сканер, например, бесплатное мобильное приложение Fing.
+https://play.google.com/store/apps/details?id=com.overlook.android.fing
+Использование Нейросети https://aws.amazon.com/ru/rekognition/ Amazon для распознавания лиц.
+End
